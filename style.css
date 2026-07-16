@@ -1,0 +1,1682 @@
+/* ==========================================================================
+   STICKERVERSE - STYLE.CSS
+   A Magical Scrapbook Theme Styling, 3D Book, DIY Editor & Mobile Support
+   ========================================================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;700&family=Outfit:wght@400;600;800&display=swap');
+
+/* ==========================================================================
+   1. COLOR THEMES (CSS Variables)
+   ========================================================================== */
+
+/* 🌸 Sakura Pink Theme (Default) */
+.theme-pink {
+    --bg-gradient: linear-gradient(135deg, #ffe5ec, #fff0f5, #eef7ff, #fff9db);
+    --surface-paper: #fffdfc;
+    --primary: #ff75b5;
+    --primary-dark: #ff4a9e;
+    --primary-light: #ffd8eb;
+    --accent: #b58cff;
+    --accent-dark: #915eff;
+    --accent-light: #f3ebff;
+    --text: #5c4e58;
+    --text-light: #8e7a88;
+    --page-line: #f6d2e4;
+    --page-margin: #ffb1d3;
+    --shadow-color: rgba(255, 117, 181, 0.15);
+    --puffy-shadow: 0 8px 0 #e65296;
+    --ring-color: #ffd0e3;
+}
+
+/* 💜 Lavender Dream Theme */
+.theme-lavender {
+    --bg-gradient: linear-gradient(135deg, #f0f0ff, #e6e6fa, #fdf2ff, #e3f8ff);
+    --surface-paper: #fbfbfe;
+    --primary: #9b8cff;
+    --primary-dark: #7a66ff;
+    --primary-light: #e4e0ff;
+    --accent: #ff85be;
+    --accent-dark: #e85397;
+    --accent-light: #ffe5f1;
+    --text: #4e4d5c;
+    --text-light: #7b798e;
+    --page-line: #e3dffc;
+    --page-margin: #bfaaff;
+    --shadow-color: rgba(155, 140, 255, 0.15);
+    --puffy-shadow: 0 8px 0 #7663e6;
+    --ring-color: #e5e0ff;
+}
+
+/* 💙 Ocean Sky Theme */
+.theme-blue {
+    --bg-gradient: linear-gradient(135deg, #e3f6ff, #f0faff, #fff2fc, #eafcf5);
+    --surface-paper: #fafefe;
+    --primary: #4fc3f7;
+    --primary-dark: #0288d1;
+    --primary-light: #e1f5fe;
+    --accent: #ff7ea5;
+    --accent-dark: #d81b60;
+    --accent-light: #ffe4ec;
+    --text: #42526e;
+    --text-light: #7a8ba3;
+    --page-line: #d1effc;
+    --page-margin: #80d6ff;
+    --shadow-color: rgba(79, 195, 247, 0.15);
+    --puffy-shadow: 0 8px 0 #0288d1;
+    --ring-color: #d1effc;
+}
+
+/* 💚 Mint Garden Theme */
+.theme-mint {
+    --bg-gradient: linear-gradient(135deg, #eafaf1, #f4fbf7, #fffde6, #fff3e0);
+    --surface-paper: #fafdfb;
+    --primary: #4ed39d;
+    --primary-dark: #2bb37c;
+    --primary-light: #def7ec;
+    --accent: #ffb85c;
+    --accent-dark: #d98214;
+    --accent-light: #fef0db;
+    --text: #4a544f;
+    --text-light: #7c8882;
+    --page-line: #d4f6e8;
+    --page-margin: #8fe7bd;
+    --shadow-color: rgba(78, 211, 157, 0.15);
+    --puffy-shadow: 0 8px 0 #289a6a;
+    --ring-color: #d4f6e8;
+}
+
+/* 🌙 Midnight Theme (Magical Dark Mode) */
+.theme-midnight {
+    --bg-gradient: linear-gradient(135deg, #0e122b, #18193f, #231942, #100a26);
+    --surface-paper: #282747;
+    --primary: #b58cff;
+    --primary-dark: #915eff;
+    --primary-light: #3a326b;
+    --accent: #ff85be;
+    --accent-dark: #e85397;
+    --accent-light: #442a4f;
+    --text: #ece9fc;
+    --text-light: #a49fc5;
+    --page-line: #3b3a62;
+    --page-margin: #7c62ca;
+    --shadow-color: rgba(181, 140, 255, 0.25);
+    --puffy-shadow: 0 8px 0 #764cc7;
+    --ring-color: #3b3a62;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientFlow 20s ease infinite;
+    overflow-x: hidden;
+    transition: background 0.8s ease, color 0.5s ease;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ==========================================================================
+   2. AMBIENT DECORATIVE LAYER (Floating Clouds, Butterflies, etc.)
+   ========================================================================== */
+.ambient-decor {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Clouds floating */
+.cloud-decor {
+    position: absolute;
+    opacity: 0.18;
+    animation: floatCloud 25s linear infinite;
+    pointer-events: none;
+    font-size: 3rem;
+}
+
+@keyframes floatCloud {
+    0% { transform: translateX(-150px) translateY(10vh); }
+    100% { transform: translateX(110vw) translateY(12vh); }
+}
+
+/* Butterflies flapping */
+.butterfly-decor {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: flutterButterfly 15s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes flutterButterfly {
+    0% {
+        transform: translate(-50px, 80vh) scale(0.8);
+        opacity: 0;
+    }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% {
+        transform: translate(110vw, 10vh) scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* Falling flower petals */
+.petal-decor {
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--primary);
+    opacity: 0.6;
+    animation: fallPetal 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fallPetal {
+    0% {
+        transform: translate(0, -50px) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% {
+        transform: translate(300px, 105vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Twinkling stars */
+.star-decor {
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--accent);
+    animation: twinkleStar 3s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+@keyframes twinkleStar {
+    0%, 100% { transform: scale(0.6); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* ==========================================================================
+   3. HEADER & CONTROLS
+   ========================================================================== */
+header {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    border-bottom: 2px dashed var(--primary);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.theme-midnight header {
+    background: rgba(14, 18, 43, 0.6);
+    border-bottom-color: var(--primary-dark);
+}
+
+.logo {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.5rem;
+    color: var(--primary);
+    text-shadow: 3px 3px 0 var(--primary-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.sparkle-char {
+    display: inline-block;
+    animation: bounceSparkle 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes bounceSparkle {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-6px) scale(1.2); }
+}
+
+/* Search Bar */
+.search-container {
+    position: relative;
+    width: 320px;
+}
+
+#search {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 3px solid var(--primary-light);
+    border-radius: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    outline: none;
+    background: var(--surface-paper);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+
+#search:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--shadow-color), inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-decor {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+/* Theme / Music Controls */
+.controls-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#themeSelect {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 3px solid var(--primary-light);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    background: var(--surface-paper);
+    color: var(--text);
+    cursor: pointer;
+    outline: none;
+    transition: border 0.3s;
+}
+
+#themeSelect:focus {
+    border-color: var(--primary);
+}
+
+.control-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: var(--primary);
+    color: white;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 0 var(--primary-dark);
+    transition: all 0.2s;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--primary-dark);
+}
+
+.control-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   4. DASHBOARD (Collection Progress & Quick Actions)
+   ========================================================================== */
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    max-width: 900px;
+    margin: 30px auto 10px;
+    padding: 0 20px;
+    gap: 20px;
+    z-index: 10;
+    position: relative;
+}
+
+.dashboard-card {
+    background: var(--surface-paper);
+    border: 3px solid var(--primary-light);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.progress-card h3 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.6rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.progress-container {
+    width: 100%;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: var(--primary-light);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--surface-paper);
+}
+
+#progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.achievement-badge {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    animation: heartbeat 2s infinite alternate;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+.actions-card {
+    max-width: 320px;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+/* PUFFY BUTTONS */
+.puffy-btn {
+    padding: 14px 22px;
+    border-radius: 20px;
+    border: 3px solid #5c4e58;
+    background: var(--primary);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    box-shadow: var(--puffy-shadow), 0 10px 20px rgba(0,0,0,0.15);
+    transition: all 0.15s;
+    user-select: none;
+}
+
+.theme-midnight .puffy-btn {
+    border-color: #100a26;
+}
+
+.puffy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--puffy-shadow), 0 12px 22px rgba(0,0,0,0.2);
+}
+
+.puffy-btn:active {
+    transform: translateY(8px);
+    box-shadow: 0 0px 0 var(--primary-dark), 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.mini-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+}
+
+.pink-btn {
+    background: #ff5e97;
+    --puffy-shadow: 0 4px 0 #cc2a63;
+}
+
+.green-btn {
+    background: #4ed39d;
+    --puffy-shadow: 0 4px 0 #289a6a;
+}
+
+/* ==========================================================================
+   5. THE 3D BOOK & PAGE FLIPPING ENGINE
+   ========================================================================== */
+.scrapbook-wrapper {
+    position: relative;
+    max-width: 1050px;
+    margin: 20px auto 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 580px;
+}
+
+.book-container {
+    position: relative;
+    width: 900px;
+    height: 560px;
+    perspective: 1600px;
+}
+
+/* Book Body Frame */
+.book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Closed state - aligns book to center cover view */
+.book.closed {
+    transform: rotateY(0deg) translateX(25%);
+}
+
+.book.open {
+    transform: rotateY(0deg) translateX(0%);
+}
+
+/* A single folding sheet: containing left (back) and right (front) pages */
+.sheet {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    z-index: 1;
+}
+
+/* Flipped state: Sheet rotates 180 degrees over spine */
+.sheet.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Page Faces (Front / Back side of sheet) */
+.page-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 5px 8px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    padding: 25px 30px;
+    user-select: text;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Front is on the right when sheet is flat */
+.page-face.front {
+    transform: rotateY(0deg);
+    z-index: 2;
+    border-left: 2px solid var(--ring-color);
+}
+
+/* Back is on the left when sheet is flipped */
+.page-face.back {
+    transform: rotateY(180deg);
+    z-index: 1;
+    border-radius: 24px 0 0 24px;
+    border-right: 2px solid var(--ring-color);
+}
+
+/* Cover Styling */
+.cover-face {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border: 8px solid var(--surface-paper);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.1), 10px 15px 35px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cover-face.back-cover {
+    border-radius: 0 24px 24px 0;
+}
+
+.cover-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
+}
+
+.scrapbook-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 3.8rem;
+    line-height: 0.95;
+    color: var(--surface-paper);
+    text-shadow: 4px 4px 0 var(--text);
+    margin-bottom: 5px;
+    transform: rotate(-3deg);
+}
+
+.cover-badge {
+    background: var(--surface-paper);
+    color: var(--primary-dark);
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 30px;
+    border: 3px solid var(--text);
+    box-shadow: 4px 4px 0 var(--text);
+}
+
+.cover-illustration {
+    position: relative;
+    width: 180px;
+    height: 100px;
+    margin: 10px 0;
+}
+
+.floating-sticker {
+    font-size: 2.5rem;
+    position: absolute;
+    animation: coverFloat 3s ease-in-out infinite alternate;
+}
+
+.cat-sticker { left: 10px; top: 10px; animation-delay: 0.2s; }
+.strawberry-sticker { left: 70px; top: 30px; animation-delay: 0.8s; }
+.flower-sticker { left: 130px; top: 0px; animation-delay: 0.5s; }
+
+@keyframes coverFloat {
+    0% { transform: translateY(0) rotate(5deg); }
+    100% { transform: translateY(-12px) rotate(-8deg); }
+}
+
+.open-inside-btn {
+    padding: 12px 24px;
+    border-radius: 20px;
+    border: 3px solid var(--text);
+    background: #ffe066;
+    color: var(--text);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--text);
+    transition: transform 0.2s;
+}
+
+.open-inside-btn:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+/* Notebook Page Shading & Textures */
+.notebook-page {
+    background: var(--surface-paper);
+    position: relative;
+    /* Soft paper texture pattern overlay */
+    background-image: 
+        radial-gradient(var(--page-line) 1px, transparent 1px),
+        repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--page-line) 31px, var(--page-line) 32px);
+    background-size: 24px 24px, 100% 32px;
+}
+
+/* Spine spiral ring visuals overlay */
+.notebook-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 18px;
+    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0));
+    pointer-events: none;
+    z-index: 10;
+}
+
+.page-face.front::after {
+    left: 0;
+}
+
+.page-face.back::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0,0,0,0.1), rgba(0,0,0,0));
+}
+
+/* Spiral rings mockup */
+.sheet::before {
+    content: '☁️';
+    opacity: 0;
+}
+
+/* Notebook red margin line */
+.notebook-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 117, 181, 0.4);
+    pointer-events: none;
+}
+
+.page-face.front::before {
+    left: 45px;
+    border-left: 1px solid rgba(255, 117, 181, 0.2);
+}
+
+.page-face.back::before {
+    right: 45px;
+    border-right: 1px solid rgba(255, 117, 181, 0.2);
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed var(--page-line);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 5;
+}
+
+.handwritten-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.page-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    background: var(--primary-light);
+    padding: 3px 8px;
+    border-radius: 8px;
+}
+
+/* Center Binding Crease */
+.book::before {
+    content: '';
+    position: absolute;
+    left: calc(50% - 10px);
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.2) 25%, 
+        rgba(0,0,0,0.05) 50%,
+        rgba(0,0,0,0.2) 75%,
+        rgba(0,0,0,0.1) 100%
+    );
+    z-index: 50;
+    pointer-events: none;
+    border-radius: 4px;
+}
+
+/* Spine metal rings */
+.book::after {
+    content: '➰  ➰  ➰  ➰  ➰  ➰  ➰  ➰  ➰  ➰  ➰';
+    position: absolute;
+    left: calc(50% - 11px);
+    top: 15px;
+    width: 22px;
+    height: 94%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #cbd5e0;
+    font-size: 24px;
+    line-height: 1;
+    z-index: 52;
+    pointer-events: none;
+    letter-spacing: 0;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.08);
+}
+
+.theme-midnight .book::after {
+    color: #4a5568;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid var(--text);
+    background: var(--surface-paper);
+    color: var(--text);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--text);
+    z-index: 60;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.nav-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+    background: var(--primary-light);
+}
+
+.nav-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 1px 1px 0 var(--text);
+}
+
+.left-arrow {
+    left: -70px;
+}
+
+.right-arrow {
+    right: -70px;
+}
+
+/* ==========================================================================
+   6. RIBBON NAVIGATION BOOKMARKS (Side Tabs)
+   ========================================================================== */
+.ribbon-bookmarks {
+    position: absolute;
+    right: -100px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 5;
+    pointer-events: auto;
+}
+
+.bookmark-tab {
+    border: 3px solid var(--text);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    color: white;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.05rem;
+    padding: 6px 14px 6px 10px;
+    cursor: pointer;
+    text-align: left;
+    box-shadow: 4px 4px 0 var(--text);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 100px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+    transform-origin: left center;
+}
+
+.bookmark-tab:hover {
+    transform: translateX(8px) scale(1.05);
+    width: 110px;
+}
+
+/* Tab Active State */
+.bookmark-tab.active {
+    font-weight: bold;
+    transform: translateX(12px) scale(1.1);
+    width: 115px;
+    box-shadow: 2px 2px 0 var(--text);
+    z-index: 20;
+}
+
+.tab-cover { background-color: #ff85be; }
+.tab-animals { background-color: #b58cff; }
+.tab-food { background-color: #4fc3f7; }
+.tab-flowers { background-color: #4ed39d; }
+.tab-emojis { background-color: #ffb85c; }
+.tab-celebrations { background-color: #ff6b6b; }
+.tab-cute { background-color: #45b3e3; }
+.tab-favorites { background-color: #ff4d6d; }
+.tab-diy { background-color: #9f7aea; }
+
+/* ==========================================================================
+   7. STICKER CARDS (Grid and Album)
+   ========================================================================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 8px 10px 20px;
+    max-height: 440px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) transparent;
+}
+
+.grid::-webkit-scrollbar {
+    width: 6px;
+}
+.grid::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 10px;
+}
+
+/* Card tape & pin */
+.sticker-card {
+    background: white;
+    border-radius: 16px;
+    padding: 12px;
+    position: relative;
+    border: 2px solid var(--text-light);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    text-align: center;
+}
+
+/* Washi Tape Effect */
+.sticker-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 50px;
+    height: 16px;
+    background: repeating-linear-gradient(45deg, rgba(255,182,193,0.7), rgba(255,182,193,0.7) 5px, rgba(255,240,245,0.7) 5px, rgba(255,240,245,0.7) 10px);
+    border: 1px dashed rgba(0,0,0,0.1);
+    transform: rotate(-3deg);
+    z-index: 10;
+}
+
+/* Push Pin Effect */
+.sticker-card::after {
+    content: '📌';
+    position: absolute;
+    top: -12px;
+    font-size: 1.1rem;
+    z-index: 11;
+}
+
+/* Random rotations for authentic scrapbook look */
+.sticker-card:nth-child(3n+1) { transform: rotate(-1.5deg); }
+.sticker-card:nth-child(3n+2) { transform: rotate(2deg); }
+.sticker-card:nth-child(3n+3) { transform: rotate(-2.5deg); }
+
+.sticker-card:hover {
+    transform: translateY(-8px) scale(1.04) rotate(0deg);
+    box-shadow: 0 12px 20px var(--shadow-color), 0 5px 10px rgba(0,0,0,0.05);
+    border-color: var(--primary);
+    z-index: 15;
+}
+
+/* Locked/Uncollected state */
+.sticker-card.locked {
+    filter: grayscale(1) opacity(0.5);
+    background: #f7fafc;
+}
+
+.sticker-card.locked img {
+    filter: blur(1.5px);
+}
+
+.lock-badge {
+    position: absolute;
+    background: var(--text);
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    bottom: 8px;
+    right: 8px;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.sticker-card img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    transition: transform 0.3s;
+}
+
+.sticker-card:hover img {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+.sticker-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.badge-fav {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1rem;
+    animation: popFav 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popFav {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.3rem;
+    color: var(--text-light);
+    grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   8. DIY CANVAS SCRAPBOOK PAGE
+   ========================================================================== */
+.diy-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.diy-instructions {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.diy-canvas {
+    width: 100%;
+    height: 330px;
+    border: 3px dashed var(--page-margin);
+    border-radius: 16px;
+    position: relative;
+    background: #fffefb;
+    overflow: hidden;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+    cursor: default;
+    user-select: none;
+}
+
+.canvas-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+.canvas-tape {
+    position: absolute;
+    width: 50px;
+    height: 16px;
+    background: repeating-linear-gradient(45deg, rgba(167,139,250,0.4), rgba(167,139,250,0.4) 5px, rgba(255,255,255,0.4) 5px, rgba(255,255,255,0.4) 10px);
+    border: 1px dashed rgba(0,0,0,0.08);
+}
+.tape-top-left { top: 8px; left: 8px; transform: rotate(-25deg); }
+.tape-bottom-right { bottom: 8px; right: 8px; transform: rotate(-25deg); }
+
+.canvas-watermark {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.1rem;
+    color: var(--page-margin);
+    opacity: 0.6;
+}
+
+.diy-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Placed Stickers on Canvas */
+.placed-sticker {
+    position: absolute;
+    cursor: move;
+    width: 80px;
+    height: 80px;
+    transform-origin: center center;
+    touch-action: none;
+    z-index: 10;
+}
+
+.placed-sticker img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Dragging active frame */
+.placed-sticker.selected {
+    outline: 2px dashed var(--primary);
+    outline-offset: 4px;
+}
+
+/* Visual Tape on Placed Sticker */
+.placed-sticker.taped::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: calc(50% - 15px);
+    width: 30px;
+    height: 10px;
+    background: rgba(255, 235, 140, 0.85);
+    border: 1px dashed rgba(0,0,0,0.1);
+    transform: rotate(-5deg);
+    z-index: 12;
+}
+
+/* Placing handles on active selection */
+.sticker-control {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--text);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 20;
+}
+
+.placed-sticker.selected .sticker-control {
+    display: flex;
+}
+
+.btn-delete {
+    top: -12px;
+    left: -12px;
+    background: #ff6b6b;
+    color: white;
+}
+
+.btn-rotate {
+    top: -12px;
+    right: -12px;
+    background: #b58cff;
+    color: white;
+    cursor: grab;
+}
+
+.btn-scale {
+    bottom: -12px;
+    right: -12px;
+    background: #4fc3f7;
+    color: white;
+    cursor: nwse-resize;
+}
+
+.btn-tape-toggle {
+    bottom: -12px;
+    left: -12px;
+    background: #ffeb60;
+    color: var(--text);
+}
+
+/* Drawer Section */
+.diy-drawer {
+    background: var(--surface-paper);
+    border-top: 3px dashed var(--primary);
+    padding: 20px 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
+    box-shadow: 0 -8px 25px rgba(0,0,0,0.06);
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+.theme-midnight .diy-drawer {
+    background: #231942;
+    border-top-color: var(--primary-dark);
+}
+
+.diy-drawer.hidden {
+    transform: translateY(100%);
+}
+
+.drawer-header {
+    margin-bottom: 12px;
+}
+
+.drawer-header h3 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.drawer-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 700;
+}
+
+.drawer-grid {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 5px 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) transparent;
+}
+
+.drawer-grid::-webkit-scrollbar {
+    height: 6px;
+}
+
+.drawer-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 10px;
+}
+
+.drawer-item {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid var(--text-light);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.drawer-item:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: var(--primary);
+}
+
+.drawer-item.disabled {
+    filter: grayscale(1) opacity(0.3);
+    cursor: not-allowed;
+}
+
+.drawer-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.drawer-item .lock-badge {
+    width: 16px;
+    height: 16px;
+    font-size: 0.5rem;
+    bottom: -3px;
+    right: -3px;
+}
+
+/* ==========================================================================
+   9. POPUP CARD MODAL
+   ========================================================================== */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-card {
+    background: #fffdfb;
+    border-radius: 28px;
+    border: 4px solid var(--text);
+    width: min(380px, 92%);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    box-shadow: 10px 14px 0 var(--text);
+    transform: scale(0.8) rotate(-3deg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+}
+
+.popup-overlay.active .popup-card {
+    transform: scale(1) rotate(0deg);
+}
+
+.close-popup-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--text);
+    background: var(--primary-light);
+    color: var(--text);
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0 var(--text);
+    transition: all 0.1s;
+}
+
+.close-popup-btn:hover {
+    transform: scale(1.05);
+}
+
+.close-popup-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+.popup-image-container {
+    width: 140px;
+    height: 140px;
+    margin: 10px auto;
+    position: relative;
+    background: white;
+    border: 3px solid var(--text-light);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-tape {
+    position: absolute;
+    top: -10px;
+    width: 60px;
+    height: 20px;
+    background: rgba(255, 235, 140, 0.9);
+    border: 1px dashed rgba(0,0,0,0.1);
+    transform: rotate(5deg);
+}
+
+#popupImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#popupTitle {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-top: 10px;
+}
+
+.popup-category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+#popupDesc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 15px 0 20px;
+    color: var(--text);
+}
+
+.popup-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup-action-btn {
+    padding: 12px;
+    border-radius: 16px;
+    border: 3px solid var(--text);
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.15s;
+    box-shadow: 4px 4px 0 var(--text);
+}
+
+.collect-action {
+    background: #ffe066;
+    color: var(--text);
+}
+
+.fav-action {
+    background: #ff5e97;
+    color: white;
+}
+
+.popup-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 var(--text);
+}
+
+.popup-action-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+/* Collected/active styles */
+.popup-action-btn.collected-state {
+    background: #cbd5e0;
+    color: #718096;
+    box-shadow: 2px 2px 0 var(--text);
+    transform: translate(2px, 2px);
+    cursor: default;
+    pointer-events: none;
+}
+
+.popup-action-btn.fav-active {
+    background: #ffe5f1;
+    color: #ff5e97;
+    border-color: #ff5e97;
+}
+
+/* ==========================================================================
+   10. PARTICLES BURST LAYERS
+   ========================================================================== */
+#particle-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1100;
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 1.5rem;
+    animation: particleFly 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes particleFly {
+    0% {
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(var(--rot));
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   11. RESPONSIVE DESIGN (Laptops, Tablets & Mobiles)
+   ========================================================================== */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 991px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    .search-container {
+        width: 250px;
+    }
+
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .actions-card {
+        max-width: 100%;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Single page mode */
+    .book-container {
+        width: 440px;
+        height: 580px;
+    }
+
+    .book.closed {
+        transform: rotateY(0deg) translateX(0);
+    }
+
+    .sheet {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        transform-origin: center center;
+    }
+
+    /* Single page page-faces take 100% width and display front / back as stack layers */
+    .page-face {
+        border-radius: 24px !important;
+        border: 4px solid var(--text) !important;
+        box-shadow: 6px 8px 0 var(--text) !important;
+    }
+
+    /* Spine styles disappear on mobile stacked pages */
+    .book::before, .book::after {
+        display: none;
+    }
+
+    .page-face.front::before, .page-face.back::before {
+        display: none; /* remove margin lines */
+    }
+
+    /* Mobile Sheet Navigation sliding out */
+    .sheet.flipped {
+        transform: translateX(-120%) rotate(-8deg);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .nav-arrow {
+        bottom: -70px;
+        top: auto;
+        transform: none;
+    }
+
+    .left-arrow {
+        left: 80px;
+    }
+
+    .right-arrow {
+        right: 80px;
+    }
+
+    .nav-arrow:hover {
+        transform: scale(1.05);
+    }
+
+    .nav-arrow:active {
+        transform: scale(0.95);
+    }
+
+    /* Reposition Side Ribbon Tabs */
+    .ribbon-bookmarks {
+        right: auto;
+        left: -40px;
+        top: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: calc(100% + 80px);
+        max-width: 520px;
+        position: absolute;
+        top: -65px;
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .bookmark-tab {
+        border: 2px solid var(--text);
+        border-radius: 8px 8px 0 0;
+        padding: 4px 8px;
+        font-size: 0.85rem;
+        width: auto;
+        text-align: center;
+        box-shadow: 2px -2px 0 var(--text);
+    }
+
+    .bookmark-tab:hover {
+        transform: translateY(-4px);
+        width: auto;
+    }
+
+    .bookmark-tab.active {
+        transform: translateY(-6px) scale(1.05);
+        width: auto;
+        box-shadow: 2px -2px 0 var(--text);
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-height: 420px;
+    }
+
+    .diy-canvas {
+        height: 290px;
+    }
+
+    .diy-drawer {
+        padding: 15px 20px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 520px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .controls-group {
+        justify-content: space-between;
+    }
+
+    #themeSelect {
+        flex-grow: 1;
+    }
+
+    .ribbon-bookmarks {
+        top: -125px;
+        left: -10px;
+        width: calc(100% + 20px);
+    }
+
+    .bookmark-tab {
+        font-size: 0.75rem;
+        padding: 3px 6px;
+    }
+
+    .book-container {
+        width: 320px;
+        height: 520px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        max-height: 380px;
+    }
+
+    .sticker-card img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .diy-canvas {
+        height: 250px;
+    }
+
+    .puffy-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .left-arrow {
+        left: 30px;
+    }
+
+    .right-arrow {
+        right: 30px;
+    }
+}
