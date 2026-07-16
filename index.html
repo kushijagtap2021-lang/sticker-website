@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StickerVerse ✨ Magical Scrapbook</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for hand-written scrapbook feel and premium UI -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="theme-pink">
+
+    <!-- Ambient Animations Background -->
+    <div id="clouds-layer" class="ambient-decor"></div>
+    <div id="butterflies-layer" class="ambient-decor"></div>
+    <div id="sparkles-layer" class="ambient-decor"></div>
+    <div id="petals-layer" class="ambient-decor"></div>
+
+    <!-- Main Premium Header -->
+    <header>
+        <div class="logo" id="headerLogo">
+            <span class="sparkle-char">✨</span>StickerVerse<span class="sparkle-char">✨</span>
+        </div>
+
+        <!-- Search Bar in Header for constant availability -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="🔍 Search by name, emoji, category...">
+            <span class="search-decor">🌸</span>
+        </div>
+
+        <div class="controls-group">
+            <select id="themeSelect">
+                <option value="pink">🌸 Sakura Pink</option>
+                <option value="lavender">💜 Lavender Dream</option>
+                <option value="blue">💙 Ocean Sky</option>
+                <option value="mint">💚 Mint Garden</option>
+                <option value="midnight">🌙 Midnight</option>
+            </select>
+
+            <button id="musicToggle" class="control-btn puffy-heart" title="Toggle Music">
+                🎵
+            </button>
+        </div>
+    </header>
+
+    <!-- Top Dashboard: Progress and Gamification -->
+    <section class="dashboard">
+        <div class="dashboard-card progress-card">
+            <h3>📊 Collection Progress</h3>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progress" style="width: 0%"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="collectedCount">0 / 24 Collected</span>
+                    <span id="achievement" class="achievement-badge">🌱 Beginner Collector</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card actions-card">
+            <button id="surpriseBtn" class="puffy-btn">
+                🎲 Surprise Me!
+            </button>
+            <button id="openBookBtn" class="puffy-btn">
+                📖 Open Scrapbook
+            </button>
+        </div>
+    </section>
+
+    <!-- 3D Scrapbook Container -->
+    <main class="scrapbook-wrapper">
+
+        <!-- Interactive 3D Book -->
+        <div class="book-container">
+            <div id="book" class="book closed">
+
+                <!-- SHEET 1: Front Cover / Animals -->
+                <div class="sheet" id="sheet-1" style="z-index: 10;">
+                    <!-- Front Page: Cover -->
+                    <div class="page-face front cover-face">
+                        <div class="cover-content">
+                            <div class="cover-ribbon"></div>
+                            <h1 class="scrapbook-title">My Magical<br>Scrapbook</h1>
+                            <div class="cover-badge">✨ Hand-Crafted Layouts ✨</div>
+                            <div class="cover-illustration">
+                                <div class="floating-sticker cat-sticker">🐱</div>
+                                <div class="floating-sticker strawberry-sticker">🍓</div>
+                                <div class="floating-sticker flower-sticker">🌸</div>
+                            </div>
+                            <button class="open-inside-btn" onclick="flipNext()">Open Book 📖</button>
+                        </div>
+                    </div>
+                    <!-- Back Page: Category 1 (Animals) -->
+                    <div class="page-face back notebook-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">🐱 Animals</h2>
+                            <span class="page-num">Page 1</span>
+                        </div>
+                        <div class="grid" id="grid-animals"></div>
+                    </div>
+                </div>
+
+                <!-- SHEET 2: Food / Flowers -->
+                <div class="sheet" id="sheet-2" style="z-index: 9;">
+                    <!-- Front Page: Category 2 (Food) -->
+                    <div class="page-face front notebook-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">🍓 Food</h2>
+                            <span class="page-num">Page 2</span>
+                        </div>
+                        <div class="grid" id="grid-food"></div>
+                    </div>
+                    <!-- Back Page: Category 3 (Flowers) -->
+                    <div class="page-face back notebook-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">🌸 Flowers</h2>
+                            <span class="page-num">Page 3</span>
+                        </div>
+                        <div class="grid" id="grid-flowers"></div>
+                    </div>
+                </div>
+
+                <!-- SHEET 3: Emojis / Celebrations -->
+                <div class="sheet" id="sheet-3" style="z-index: 8;">
+                    <!-- Front Page: Category 4 (Emojis) -->
+                    <div class="page-face front notebook-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">😊 Emojis</h2>
+                            <span class="page-num">Page 4</span>
+                        </div>
+                        <div class="grid" id="grid-emojis"></div>
+                    </div>
+                    <!-- Back Page: Category 5 (Celebrations) -->
+                    <div class="page-face back notebook-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">🎉 Celebrations</h2>
+                            <span class="page-num">Page 5</span>
+                        </div>
+                        <div class="grid" id="grid-celebrations"></div>
+                    </div>
+                </div>
+
+                <!-- SHEET 4: Cute Objects / Favorites -->
+                <div class="sheet" id="sheet-4" style="z-index: 7;">
+                    <!-- Front Page: Category 6 (Cute Objects) -->
+                    <div class="page-face front notebook-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">🧸 Cute Objects</h2>
+                            <span class="page-num">Page 6</span>
+                        </div>
+                        <div class="grid" id="grid-cute"></div>
+                    </div>
+                    <!-- Back Page: Favorites -->
+                    <div class="page-face back notebook-page favorites-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">❤️ Favorites</h2>
+                            <span class="page-num">Page 7</span>
+                        </div>
+                        <div class="grid" id="grid-favorites"></div>
+                        <div id="no-favorites-msg" class="empty-message">
+                            <p>No favorites saved yet! Click the ❤️ on sticker details to pin them here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHEET 5: DIY Canvas / Back Cover -->
+                <div class="sheet" id="sheet-5" style="z-index: 6;">
+                    <!-- Front Page: DIY Scrapbook Editor -->
+                    <div class="page-face front notebook-page diy-page">
+                        <div class="page-header">
+                            <h2 class="handwritten-title">🎨 DIY Canvas</h2>
+                            <span class="page-num">Page 8</span>
+                        </div>
+
+                        <p class="diy-instructions">Click unlocked stickers from the drawer below to place and arrange
+                            them!</p>
+
+                        <!-- Drag-and-drop Canvas area -->
+                        <div id="diy-canvas" class="diy-canvas">
+                            <div class="canvas-grid-lines"></div>
+                            <div class="canvas-tape tape-top-left"></div>
+                            <div class="canvas-tape tape-bottom-right"></div>
+                            <span class="canvas-watermark">My Scrapbook Page</span>
+                        </div>
+
+                        <div class="diy-toolbar">
+                            <button id="clearCanvasBtn" class="puffy-btn mini-btn pink-btn">🧹 Clear Page</button>
+                            <button id="saveCanvasBtn" class="puffy-btn mini-btn green-btn">💾 Save Layout</button>
+                        </div>
+                    </div>
+                    <!-- Back Page: Cover Back -->
+                    <div class="page-face back cover-face back-cover">
+                        <div class="cover-content">
+                            <h2 class="scrapbook-title">The End</h2>
+                            <div class="ribbon-bow">🎀</div>
+                            <p class="back-text">Designed with love and sparkles.<br>Come back to collect more!</p>
+                            <button class="open-inside-btn" onclick="flipToSheet(1)">Restart Book 📖</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Ribbon Navigation Bookmarks (Right Side Tabs) -->
+            <div class="ribbon-bookmarks">
+                <button class="bookmark-tab tab-cover" onclick="flipToSheet(1)" data-sheet="1" title="Go to Cover">🎀
+                    Cover</button>
+                <button class="bookmark-tab tab-animals" onclick="flipToSheet(1, 'back')" data-sheet="1"
+                    data-side="back" title="Go to Animals">🐱 Animals</button>
+                <button class="bookmark-tab tab-food" onclick="flipToSheet(2, 'front')" data-sheet="2" data-side="front"
+                    title="Go to Food">🍓 Food</button>
+                <button class="bookmark-tab tab-flowers" onclick="flipToSheet(2, 'back')" data-sheet="2"
+                    data-side="back" title="Go to Flowers">🌸 Flowers</button>
+                <button class="bookmark-tab tab-emojis" onclick="flipToSheet(3, 'front')" data-sheet="3"
+                    data-side="front" title="Go to Emojis">😊 Emojis</button>
+                <button class="bookmark-tab tab-celebrations" onclick="flipToSheet(3, 'back')" data-sheet="3"
+                    data-side="back" title="Go to Celebrations">🎉 Party</button>
+                <button class="bookmark-tab tab-cute" onclick="flipToSheet(4, 'front')" data-sheet="4" data-side="front"
+                    title="Go to Cute Objects">🧸 Cute</button>
+                <button class="bookmark-tab tab-favorites" onclick="flipToSheet(4, 'back')" data-sheet="4"
+                    data-side="back" title="Go to Favorites">❤️ Favs</button>
+                <button class="bookmark-tab tab-diy" onclick="flipToSheet(5, 'front')" data-sheet="5" data-side="front"
+                    title="Go to DIY Canvas">🎨 DIY</button>
+            </div>
+
+            <!-- Arrow Navigation Buttons -->
+            <button id="prevBtn" class="nav-arrow left-arrow" aria-label="Previous Page">◀</button>
+            <button id="nextBtn" class="nav-arrow right-arrow" aria-label="Next Page">▶</button>
+        </div>
+    </main>
+
+    <!-- Sticker Drawer Section (Slides up or sits at bottom for DIY page) -->
+    <section id="diy-drawer" class="diy-drawer hidden">
+        <div class="drawer-header">
+            <h3>🧸 Sticker Drawer</h3>
+            <span class="drawer-subtitle">Click collected stickers to add them to your DIY page</span>
+        </div>
+        <div id="drawer-grid" class="drawer-grid"></div>
+    </section>
+
+    <!-- Popup Overlay for Sticker details -->
+    <div id="popup" class="popup-overlay">
+        <div id="popupCard" class="popup-card">
+            <button class="close-popup-btn" onclick="closePopup()">✖</button>
+            <div id="popupSparkles"></div>
+            <div class="popup-image-container">
+                <img id="popupImage" src="" alt="Sticker">
+                <div class="popup-tape"></div>
+            </div>
+            <h2 id="popupTitle">Sticker Name</h2>
+            <div class="popup-category-badge" id="popupCategory">Category</div>
+            <p id="popupDesc">Sticker description goes here...</p>
+
+            <div class="popup-actions">
+                <button id="collectBtn" class="popup-action-btn collect-action">✨ Collect Sticker</button>
+                <button id="favButton" class="popup-action-btn fav-action">❤️ Add to Favorites</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Layer (for dynamic particle bursts of hearts/stars) -->
+    <div id="particle-layer"></div>
+
+    <!-- Fallback background music player setup -->
+    <audio id="bgMusic" loop>
+        <source src="sounds/background.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
